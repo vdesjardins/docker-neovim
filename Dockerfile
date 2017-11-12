@@ -19,6 +19,7 @@ RUN apk add --no-cache \
        git-subtree \
        the_silver_searcher \
        tini \
+       su-exec \
        zsh \
        ctags \
        neovim \
@@ -37,9 +38,7 @@ RUN apk add --no-cache \
 
 ENV LANG en_US.UTF-8
 
-COPY start.sh /start.sh
+COPY run.sh /run.sh
 
-ENTRYPOINT ["/sbin/tini", "--"]
-
-CMD ["/start.sh"]
+ENTRYPOINT ["/sbin/tini", "--", "/run.sh"]
 
